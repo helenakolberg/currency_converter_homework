@@ -35,7 +35,7 @@
             </select>
         </div>
 
-        <div v-if="calculateToEuro">{{ calculateToEuro }}</div>
+        <div v-if="isNaN(calculateToEuro) === false">{{ calculateToEuro }}</div>
 
         <h2>Currency Rates</h2>
 
