@@ -8,10 +8,41 @@
 </head>
 <body>
     <div id="app">
-        <h2>Currency Rates</h2>
-        <div v-for="(currency, name) in currencies.rates">
-            {{name}}: {{currency}}
+
+        <div>
+            <input type="number" v-model="euroAmount" placeholder="From EUR"/>
+
+            <select name="to-currency" id="to-currency" v-model="toCurrency">
+                <option value=null disabled selected>To</option>
+                <option v-for="(currency, name) in currencies.rates"
+                    v-bind:value="currency">
+                    {{name}}
+                </option>
+            </select>
         </div>
+
+        <div>{{ calculateFromEuro }}</div>
+
+        <div>
+            <select name="from-currency" id="from-currency" v-model="fromCurrency">
+                <option value="null" disabled selected>From</option>
+                <option v-for="(currency, name) in currencies.rates"
+                v-bind:value="currency">
+                    {{name}}
+                </option>
+
+            <input type="number" v-model="currencyAmount" placeholder="Amount"/>
+            </select>
+        </div>
+
+        <div v-if="calculateToEuro">{{ calculateToEuro }}</div>
+
+        <h2>Currency Rates</h2>
+
+        <ul v-for="(currency, name) in currencies.rates">
+            <li>{{name}}: {{currency.toFixed(2)}}</li>
+        </ul>
+        
     </div>
 </body>
 </html>

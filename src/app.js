@@ -7,11 +7,28 @@ document.addEventListener('DOMContentLoaded', () => {
         el: '#app',
 
         data: {
-            currencies: null
+            currencies: {},
+            euroAmount: null,
+            toCurrency: null,
+            fromCurrency: null,
+            currencyAmount: null
         },
 
         mounted: function () {
             this.fetchCurrencies();
+        },
+
+        computed: {
+
+            calculateFromEuro: function () {
+                const result = this.euroAmount * this.toCurrency;
+                return result.toFixed(2);
+            },
+
+            calculateToEuro: function () {
+                const result = this.currencyAmount / this.fromCurrency;
+                return result.toFixed(2);
+            }
         },
 
         methods: {
@@ -21,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     .then(response => response.json())
                     .then(data => this.currencies = data);
             }
-    
+
         }
 
     })
