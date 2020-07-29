@@ -10,8 +10,10 @@
     <div id="app">
 
         <div>
-            <input type="number" v-model="euroAmount" placeholder="From EUR"/>
+            <label for="from-euro">From EUR:</label>
+            <input type="number" v-model="euroAmount" placeholder="From EUR" name="from-euro"/>
 
+            <label for="to-currency">To:</label>
             <select name="to-currency" id="to-currency" v-model="toCurrency">
                 <option value=null disabled selected>To</option>
                 <option v-for="(currency, name) in currencies.rates"
@@ -24,15 +26,17 @@
         <div>{{ calculateFromEuro }}</div>
 
         <div>
+            <label for="from-currency">From:</label>
             <select name="from-currency" id="from-currency" v-model="fromCurrency">
-                <option value="null" disabled selected>From</option>
+                <option value=null disabled selected>From</option>
                 <option v-for="(currency, name) in currencies.rates"
                 v-bind:value="currency">
                     {{name}}
                 </option>
+            </select>
 
             <input type="number" v-model="currencyAmount" placeholder="Amount"/>
-            </select>
+            <span>To EUR:</span>
         </div>
 
         <div v-if="isNaN(calculateToEuro) === false">{{ calculateToEuro }}</div>

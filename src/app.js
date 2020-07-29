@@ -8,10 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         data: {
             currencies: {},
-            euroAmount: null,
-            toCurrency: null,
-            fromCurrency: null,
-            currencyAmount: null
+            euroAmount: 0,
+            toCurrency: 0,
+            fromCurrency: 0,
+            currencyAmount: 0
         },
 
         mounted: function () {
@@ -27,7 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             calculateToEuro: function () {
                 const result = this.currencyAmount / this.fromCurrency;
+                if (this.fromCurrency === 0) {
+                    return 0.00.toFixed(2);
+                } else {
                 return result.toFixed(2);
+                }
             }
         },
 
